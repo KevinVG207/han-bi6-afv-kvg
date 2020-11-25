@@ -22,29 +22,41 @@ public class Gene implements Comparable<Gene> {
         this.location = location;
     }
 
+    /**
+     * Compare two gene locations.
+     * Based on: Chromosome, arm, location and rest.
+     * @param o - Gene object to compare.
+     * @return -1,0,1.
+     */
     @Override
     public int compareTo(Gene o) {
         if (this.location.equals(o.location)) {
+            // Check if equal.
             return 0;
         } else {
+            // Split up the locations.
             String[] split1 = splitLocation(this.location);
             String[] split2 = splitLocation(o.location);
 
+            // Compare chromosomes
             if (Integer.parseInt(split1[0]) > Integer.parseInt(split2[0])) {
                 return 1;
             } else if (Integer.parseInt(split2[0]) > Integer.parseInt(split1[0])) {
                 return -1;
             } else {
+                // Compare arms
                 if (split1[1].equals("p") && split2[1].equals("q")) {
                     return -1;
                 } else if (split2[1].equals("p") && split1[1].equals("q")) {
                     return 1;
                 } else {
+                    // Compare locations
                     if (Double.parseDouble(split1[2]) > Double.parseDouble(split2[2])) {
                         return 1;
                     } else if (Double.parseDouble(split2[2]) > Double.parseDouble(split1[2])) {
                         return -1;
                     } else {
+                        // Simple String compare for leftover location.
                         return split1[3].compareTo(split2[3]);
                     }
                 }
@@ -52,6 +64,14 @@ public class Gene implements Comparable<Gene> {
         }
     }
 
+    /**
+     * Splits a location String into smaller chunks.
+     * @param location String; Location.
+     * @return String[];    [0] chromosome
+     *                      [1] arm (p/q)
+     *                      [2] location
+     *                      [3] rest
+     */
     private String[] splitLocation(String location) {
         /*
         [0] chromosome
@@ -100,6 +120,11 @@ public class Gene implements Comparable<Gene> {
         return fixChrom(curLocation);
     }
 
+    /**
+     * Deal with exception chromosomes.
+     * @param split String[]; The location, after being split by splitLocation().
+     * @return String[]; With the chromosome changed if it is not already an integer.
+     */
     private String[] fixChrom(String[] split) {
         try {
             Integer.parseInt(split[0]);

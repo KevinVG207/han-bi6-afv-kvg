@@ -1,7 +1,5 @@
 import javax.swing.*;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.util.Arrays;
 import java.util.Random;
 
 public class GameOfLife {
@@ -11,6 +9,9 @@ public class GameOfLife {
     JPanel p;
     JButton updateButton;
 
+    /**
+     * Creates a grid of randomized cells, based on user input width.
+     */
     public GameOfLife() {
         Random r = new Random();
 
@@ -29,6 +30,10 @@ public class GameOfLife {
         }
     }
 
+    /**
+     * Creates GoL JFrame.
+     * @throws InterruptedException
+     */
     public void run() throws InterruptedException {
         // Setting up JFrame
         JFrame f = new JFrame("CCGoL — Crappy Conway's Game of Life");
@@ -57,6 +62,10 @@ public class GameOfLife {
         drawScreen();
     }
 
+    /**
+     * Called when grid needs to be updated.
+     * Every cell gets ticked and then actually updated.
+     */
     private void update() {
         for (int x = 0; x < gridWidth; x++) {
             for (int y = 0; y < gridWidth; y++) {
@@ -73,10 +82,13 @@ public class GameOfLife {
         drawScreen();
     }
 
+    /**
+     * Draws the GoL grid to the JPanel.
+     */
     private void drawScreen() {
         int panelWidth = p.getWidth();
         Graphics g = p.getGraphics();
-        int cellDistance = (int)(panelWidth / (float)gridWidth);
+        int cellDistance = (int) (panelWidth / (float) gridWidth);
         int cellWidth = cellDistance - 1; // To add 1 pixel border.
 
         g.clearRect(0, 0, panelWidth, panelWidth);
