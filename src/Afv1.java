@@ -5,6 +5,9 @@ import java.util.Random;
 
 public class Afv1 {
 
+    /**
+     * Main function.
+     */
     public static void run() {
 
         System.out.println("Opdracht 2, bubble sort");
@@ -29,6 +32,9 @@ public class Afv1 {
         System.out.print("\n");
         System.out.println("Time (ms):\t" + totalTime);
 
+
+        // Test with differently sized lists
+
         HashMap<Integer, Integer> timeResults = new HashMap<>();
 
         int maxCount = 70000;
@@ -47,6 +53,11 @@ public class Afv1 {
 
     }
 
+    /**
+     * Bubble Sort algorithm, based on: https://www.geeksforgeeks.org/bubble-sort/
+     * @param intList List of integers.
+     * @return Sorted list of integers.
+     */
     private static List<Integer> bubbleSort(List<Integer> intList) {
         int len = intList.size();
 
@@ -63,6 +74,12 @@ public class Afv1 {
         return intList;
     }
 
+    /**
+     * Generates a list with random ints.
+     * @param count - Integer; Amount of integers to generate.
+     * @param max - Integer; Maximum value of the integers.
+     * @return Integer ArrayList; Randomly generated integers list.
+     */
     private static List<Integer> generateRandomList(int count, int max){
         List<Integer> intList = new ArrayList<>();
         Random r = new Random();

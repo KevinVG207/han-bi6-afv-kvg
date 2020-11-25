@@ -10,7 +10,6 @@ public class GameOfLife {
     Cell[][] cellGrid;
     JPanel p;
     JButton updateButton;
-    boolean autoPlay = false;
 
     public GameOfLife() {
         Random r = new Random();
@@ -94,11 +93,6 @@ public class GameOfLife {
                 g.fillRect(x * cellDistance, y * cellDistance, cellWidth, cellWidth);
             }
         }
-
-    }
-
-    private void toggleAutoPlay(){
-
 
     }
 

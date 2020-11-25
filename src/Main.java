@@ -24,10 +24,12 @@ public class Main {
                     Afv1.run();
                     break;
                 case "2-1":
+                    System.out.println("Warning: Pop-up may appear below active window.");
                     GameOfLife gol = new GameOfLife();
                     gol.run();
                     break;
                 case "2-2":
+                    System.out.println("Warning: Pop-up may appear below active window.");
                     GeneSorter gs = new GeneSorter();
                     JFileChooser fileChooser = new JFileChooser();
                     fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
