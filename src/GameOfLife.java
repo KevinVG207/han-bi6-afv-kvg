@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Random;
 
 public class GameOfLife {
@@ -8,6 +10,8 @@ public class GameOfLife {
     Cell[][] cellGrid;
     JPanel p;
     JButton updateButton;
+    JCheckBox autorunBox;
+
 
     /**
      * Creates a grid of randomized cells, based on user input width.
@@ -53,6 +57,12 @@ public class GameOfLife {
                 update());
         f.add(updateButton);
 
+        autorunBox = new JCheckBox("Auto");
+        autorunBox.addActionListener(e ->
+                autoRun());
+        f.add(autorunBox);
+
+
         //Create GUI
         f.setVisible(true);
         f.setLocationRelativeTo(null);
@@ -80,6 +90,20 @@ public class GameOfLife {
             }
         }
         drawScreen();
+    }
+
+    /**
+     * Function to set timer and automatically update the grid when the box is ticked.
+     */
+    private void autoRun() {
+        Timer timer = new Timer(250, arg0 -> {
+            if (autorunBox.isSelected()){
+                update();
+                autoRun();
+            }
+        });
+        timer.setRepeats(false);
+        timer.start();
     }
 
     /**
