@@ -42,8 +42,9 @@ public class ChromLink {
                     netMillis = afterMillis - beforeMillis;
                     System.out.println("1\t" + curTestCount + "\t" + netMillis);
 
+                    int nextIndex = chromList.get(0).size()-1;
                     beforeMillis = System.currentTimeMillis();
-                    String[] tmpData = chromList.get(chromList.size()-1).get(chromList.get(chromList.size()-1).size()-1);
+                    String[] tmpData = chromList.get(0).get(nextIndex);
                     afterMillis = System.currentTimeMillis();
                     netMillis = afterMillis - beforeMillis;
                     System.out.println("2\t" + curTestCount + "\t" + netMillis);
@@ -66,8 +67,9 @@ public class ChromLink {
                     netMillis = afterMillis - beforeMillis;
                     System.out.println("1\t" + curTestCount + "\t" + netMillis);
 
+                    int nextIndex = chromList.get(0).size()-1;
                     beforeMillis = System.currentTimeMillis();
-                    String[] tmpData = chromList.get(chromList.size()-1).get(chromList.get(chromList.size()-1).size()-1);
+                    String[] tmpData = chromList.get(0).get(nextIndex);
                     afterMillis = System.currentTimeMillis();
                     netMillis = afterMillis - beforeMillis;
                     System.out.println("2\t" + curTestCount + "\t" + netMillis);
