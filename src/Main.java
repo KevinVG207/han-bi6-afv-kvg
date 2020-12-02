@@ -8,8 +8,6 @@ public class Main {
          * Main method. Allows user to choose the exercise to show.
          */
 
-        System.out.println((-1 % 100));
-
         Scanner scanner = new Scanner(System.in);
         String inputVar = "";
         boolean exiting = false;
@@ -42,6 +40,18 @@ public class Main {
                 case "3-1":
                     CheckExpression ce = new CheckExpression();
                     ce.run();
+                    break;
+                case "3-2":
+                    System.out.println("Please choose NCBI All_Mammalia.gene_info");
+                    System.out.println("Warning: Pop-up may appear below active window.");
+                    ChromLink cr = new ChromLink();
+                    JFileChooser fileChooser2 = new JFileChooser();
+                    fileChooser2.setCurrentDirectory(new File(System.getProperty("user.home")));
+                    int result2 = fileChooser2.showOpenDialog(null);
+                    if (result2 == JFileChooser.APPROVE_OPTION) {
+                        File selectedFile = fileChooser2.getSelectedFile();
+                        cr.run(selectedFile.getAbsolutePath());
+                    }
                     break;
                 case "q":
                 case "quit":
