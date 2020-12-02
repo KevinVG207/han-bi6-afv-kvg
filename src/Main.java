@@ -38,6 +38,11 @@ public class Main {
                         File selectedFile = fileChooser.getSelectedFile();
                         gs.run(selectedFile.getAbsolutePath());
                     }
+                    break;
+                case "3-1":
+                    CheckExpression ce = new CheckExpression();
+                    ce.run();
+                    break;
                 case "q":
                 case "quit":
                 case "stop":
