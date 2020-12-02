@@ -5,96 +5,94 @@ public class CheckExpression {
 
     // Characters because I need them to print what kind of bracket it is.
     private final ArrayList<Character> brackets = new ArrayList<>();
-    private final ArrayList<Character> squareBrackets = new ArrayList<>();
-    private final ArrayList<Character> curlyBrackets = new ArrayList<>();
 
     private boolean add = true;
-    private ArrayList<Character> curList;
+    private char expectedBracket;
 
+
+    /**
+     * Gets a string through user input and verifies validity of brackets.
+     */
     public void run(){
-        // Get user input
+        // Get user input.
         String expression = getUserInput();
 
-        // Verify String
+        // Verify String.
         verifyString(expression);
 
     }
 
+
+    /**
+     * Gets user input String.
+     * @return String - User input String.
+     */
     private String getUserInput() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter expression:");
         return scan.nextLine();
     }
 
+
+    /**
+     * Verify if brackets are correct in given input String.
+     * @param expr String - Input String.
+     */
     private void verifyString(String expr) {
 
         for(int i = 0; i < expr.length(); i++){
             char curChar = expr.charAt(i);
             switch(curChar){
                 case '(':
-                    // Add
+                case '[':
+                case '{':
                     add = true;
-                    curList = brackets;
                     break;
                 case ')':
-                    // Remove
                     add = false;
-                    curList = brackets;
-                    break;
-                case '[':
-                    // Add
-                    add = true;
-                    curList = squareBrackets;
+                    expectedBracket = '(';
                     break;
                 case ']':
-                    // Remove
                     add = false;
-                    curList = squareBrackets;
-                    break;
-                case '{':
-                    // Add
-                    add = true;
-                    curList = curlyBrackets;
+                    expectedBracket = '[';
                     break;
                 case '}':
                     // Remove
                     add = false;
-                    curList = curlyBrackets;
+                    expectedBracket = '{';
                     break;
             }
 
-            // Add or remove from list
+            // Add or remove from list.
             if(add){
-                curList.add(curChar);
+                brackets.add(curChar);
             }else{
-                if(curList.size() >= 1){
-                    curList.remove(curList.size()-1);
+                if(brackets.size() >= 1){
+                    if(brackets.get(brackets.size()-1) == expectedBracket){
+                        // Closure as expected, just remove.
+                        brackets.remove(brackets.size()-1);
+                    }else{
+                        // Incorrect closure.
+                        System.out.println("Error: Incorrect bracket closure of " + curChar + " at position " + i);
+                        return;
+                    }
                 }else{
-                    // Problem in brackets!
-                    System.out.println("Error: At least one too many of " + curChar);
+                    // Incorrect closure.
+                    System.out.println("Error: Incorrect bracket closure of " + curChar + " at position " + i);
                     return;
                 }
             }
-
         }
 
         // For loop succeeded: Check if leftovers exist.
-        boolean error = false;
         if(brackets.size() > 0){
-            System.out.println("Error: At least one too many of " + brackets.get(0));
-            error = true;
-        }
-        if(squareBrackets.size() > 0){
-            System.out.println("Error: At least one too many of " + squareBrackets.get(0));
-            error = true;
-        }
-        if(curlyBrackets.size() > 0){
-            System.out.println("Error: At least one too many of " + curlyBrackets.get(0));
-            error = true;
-        }
-
-        // If no errors.
-        if(!error){
+            // Not enough closures.
+            System.out.println("Error: Not enough closing brackets. Unclosed brackets are:");
+            for(char bracket : brackets){
+                System.out.println(bracket);
+            }
+        }else{
+            // No errors found.
             System.out.println("No errors in brackets found!");
         }
 
