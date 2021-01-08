@@ -54,7 +54,7 @@ public class Main {
                     }
                     break;
                 case "5-1":
-                    GeneFinder GF = new GeneFinder();
+                    GeneFinderGUI GF = new GeneFinderGUI();
                     GF.run();
                     break;
                 case "5-2":

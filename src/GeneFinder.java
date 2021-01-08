@@ -9,7 +9,10 @@ public class GeneFinder {
     private Set<String> set2 = new HashSet<>();
     private Set<String> set3 = new HashSet<>();
 
-    public void run(){
+    /**
+     * Used for testing with dummy data before GUI was made.
+     */
+    public void run() {
 
         // Fill sets with dummy data
         set1.add("A1AT");
@@ -29,16 +32,25 @@ public class GeneFinder {
         List<Set<String>> output = compareThreeSets(set1, set2, set3);
 
         int counter = 0;
-        for (Set<String> tmp : output){
+        for (Set<String> tmp : output) {
             System.out.println(counter);
             counter++;
-            for (String tmp2 : tmp){
+            for (String tmp2 : tmp) {
                 System.out.println(tmp2);
             }
         }
     }
 
-    private List<Set<String>> compareThreeSets(Set<String> set1, Set<String> set2, Set<String> set3) {
+    /**
+     * Calculates intersections of three String Sets.
+     * Order: All, 1&2, 1&3, 2&3.
+     *
+     * @param set1
+     * @param set2
+     * @param set3
+     * @return List with 4 Sets of Strings.
+     */
+    public List<Set<String>> compareThreeSets(Set<String> set1, Set<String> set2, Set<String> set3) {
 
         List<Set<String>> output = new ArrayList<>();
 
