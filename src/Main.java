@@ -53,6 +53,14 @@ public class Main {
                         cr.run(selectedFile.getAbsolutePath());
                     }
                     break;
+                case "5-1":
+                    GeneFinder GF = new GeneFinder();
+                    GF.run();
+                    break;
+                case "5-2":
+                    AminoConvert AC = new AminoConvert();
+                    AC.run();
+                    break;
                 case "q":
                 case "quit":
                 case "stop":
