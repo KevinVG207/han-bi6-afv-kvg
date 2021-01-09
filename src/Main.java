@@ -61,6 +61,10 @@ public class Main {
                     AminoConvert AC = new AminoConvert();
                     AC.run();
                     break;
+                case "6":
+                    OverlapGraphs OG = new OverlapGraphs();
+                    OG.run();
+                    break;
                 case "q":
                 case "quit":
                 case "stop":
